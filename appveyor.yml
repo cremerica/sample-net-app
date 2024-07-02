@@ -1,0 +1,28 @@
+version: 0.0.1-b{build}
+image: Visual Studio 2017
+before_build:
+- ps: nuget restore
+build:
+  project: demo.name.sln
+  verbosity: minimal
+before_package:
+  - ps: 'cd demo.name; nuget pack demo.name.csproj'
+artifacts:
+  - path: demo.name/bin/Debug/demo.name.dll
+    name: demo.name.dll
+  - path: demo.name/bin/Debug/demo.name.xml
+    name: demo.name.xml
+  - path: 'demo.name/*.nupkg'
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
+deploy:
+  provider: NuGet
+  api_key:
+    secure: asd
+  artifact: /.*\.nupkg/
+  on:
+    appveyor_repo_tag: true

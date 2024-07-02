@@ -1,0 +1,11 @@
+openapi: 3.0.1
+info:
+  title: Sample Net App
+  description: ""
+  x-cortex-tag: sample-net-app
+  x-cortex-git:
+    github:
+      repository: cremerica/sample-net-app
+  x-cortex-custom-metadata:
+    cortex-template-version: 1.0
+    cortex-generated-timestamp: 2024-07-02T20:06:35.551112131
